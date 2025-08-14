@@ -62,8 +62,8 @@
         }
 
         #gato-triste {
-            width: 100px; /* Tamaño más grande para el ancho */
-            height: 75px; /* Tamaño más grande para el alto */
+            width: 100px;
+            height: 75px;
             margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -162,8 +162,8 @@
                 font-size: 1.5em;
             }
             #gato-triste {
-                width: 80px; /* Ajuste para móvil */
-                height: 60px; /* Ajuste para móvil */
+                width: 80px;
+                height: 60px;
             }
             button {
                 width: 100px;
@@ -186,6 +186,7 @@
     </style>
 </head>
 <body>
+    <h1>Para la persona más especial del mundo...</h1>
     
     <div id="pregunta-contenedor">
         <img id="gato-triste" src="1.jpg" alt="Gato Triste">
@@ -224,7 +225,8 @@
         ];
         let indiceGatoTriste = 0;
 
-        botonNo.addEventListener('mouseover', () => {
+        // Funcion para mover el boton y cambiar la imagen del gato
+        function moverBotonYCambiarGato() {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
             const maxX = screenWidth - botonNo.offsetWidth;
@@ -239,6 +241,15 @@
             
             indiceGatoTriste = (indiceGatoTriste + 1) % gatosTristes.length;
             gatoTristeImg.src = gatosTristes[indiceGatoTriste];
+        }
+
+        // Evento para escritorio (mouseover)
+        botonNo.addEventListener('mouseover', moverBotonYCambiarGato);
+        
+        // Evento para móvil (touchstart)
+        botonNo.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Evita el comportamiento por defecto de 'touchstart'
+            moverBotonYCambiarGato();
         });
 
         botonSi.addEventListener('click', () => {
